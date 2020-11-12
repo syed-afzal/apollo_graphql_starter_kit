@@ -1,5 +1,5 @@
 module.exports = {
-  user: [
+  users: [
       { id: 1, name: 'Afzal', email: 'sah.afzal@gmail.com'},
       { id: 2, name: 'Shaheer', email: 'shaheer@gmail.com'},
       { id: 3, name: 'Moeed', email: 'moeed@gmail.com'},
