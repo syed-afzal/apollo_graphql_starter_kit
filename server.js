@@ -2,7 +2,7 @@ const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express');
 const cors = require('cors');
 const dotEnv = require('dotenv');
-const { tasks, users } = require('./constants');
+const resolvers = require('./resolvers');
 
 // set env variables
 dotEnv.config();
@@ -25,6 +25,16 @@ const typeDefs = gql`
     user(id: ID!): User
   }
   
+  type Mutation {
+    createTask(input: createTaskInput): Task
+  }
+  
+  input createTaskInput {
+    name: String!
+    completed: Boolean!
+    userId: ID!
+  }
+  
   type User {
     id: ID!
     name: String!
@@ -39,23 +49,6 @@ const typeDefs = gql`
     user: User!
   }
 `;
-
-const resolvers = {
-    Query: {
-        greetings: () => "Hello",
-        tasks: () => tasks, // query level resolver
-        task: (_, { id }) => tasks.find(task => task.id == id),
-        users: () => users,
-        user:(_, { id }) => users.find(user => user.id == id)
-    },
-    // Field level resolver and it has higher priority than query level resolver
-    Task: {
-        user: ({userId}) => users.find( user => user.id === userId)
-    },
-    User: {
-        tasks: ({ id }) => tasks.filter(task => task.id == id)
-    }
-};
 
 const apolloServer = new ApolloServer({
    typeDefs,
