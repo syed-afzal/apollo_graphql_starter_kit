@@ -14,7 +14,7 @@ const taskSchema = new mongoose.Schema({
         ref: 'User'
     }
 }, {
-    timestamp: true
+    timestamps: true
 });
 
 module.exports = mongoose.model('Task', taskSchema);
