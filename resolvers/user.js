@@ -1,16 +1,18 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { combineResolvers } = require('graphql-resolvers');
 
 const { users } = require('../constants');
 const User = require('../db/models/user');
+const { isAuthenticated } = require('./middleware');
 
 module.exports =  {
     Query: {
         users: () => users,
-        user:(_, { id }, { email }) => {
+        user: combineResolvers(isAuthenticated, (_, { id }, { email }) => {
             console.log('==email== ', email);
             return users.find(user => user.id == id)
-        }
+        })
     },
     Mutation: {
         signup: async (_, { input }) => {
