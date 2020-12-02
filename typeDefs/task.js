@@ -12,7 +12,6 @@ module.exports =  gql`
   input createTaskInput {
     name: String!
     completed: Boolean!
-    userId: ID!
   }
 
   type Task {
@@ -20,5 +19,7 @@ module.exports =  gql`
     name: String!
     completed: Boolean!
     user: User!
+    createdAt: Date!
+    updatedAt: Date!
   }
 `;
