@@ -4,14 +4,23 @@ const { combineResolvers } = require('graphql-resolvers');
 
 const { users } = require('../constants');
 const User = require('../db/models/user');
+const Task = require('../db/models/task');
 const { isAuthenticated } = require('./middleware');
 
 module.exports =  {
     Query: {
-        users: () => users,
-        user: combineResolvers(isAuthenticated, (_, { id }, { email }) => {
+        user: combineResolvers(isAuthenticated, async (_, __, { email }) => {
             console.log('==email== ', email);
-            return users.find(user => user.id == id)
+            try {
+                const user = User.findOne({email});
+                if (!user) {
+                    throw new Error("User not found")
+                }
+                return user;
+            } catch(e) {
+                console.error(e);
+                throw e;
+            }
         })
     },
     Mutation: {
@@ -48,6 +57,14 @@ module.exports =  {
     },
     // Field level resolver and it has higher priority than query level resolver
     Task: {
-        user: ({userId}) => users.find( user => user.id == userId)
+        user: async ( { id }) => {
+            try {
+                const task = await Task.find({user: id});
+                return task;
+            } catch (e) {
+                console.error(e);
+                throw e;
+            }
+        }
     },
 };
