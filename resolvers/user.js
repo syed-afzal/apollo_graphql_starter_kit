@@ -56,8 +56,8 @@ module.exports =  {
         }
     },
     // Field level resolver and it has higher priority than query level resolver
-    Task: {
-        user: async ( { id }) => {
+    User: {
+        tasks: async ( { id }) => {
             try {
                 const task = await Task.find({user: id});
                 return task;
