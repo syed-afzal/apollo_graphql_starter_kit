@@ -1,5 +1,6 @@
 const { skip } = require('graphql-resolvers');
 const Task = require('../../db/models/task');
+const { isValidObjectId } = require('../../db/utils');
 
 module.exports.isAuthenticated = (_, __, { email }) => {
   if(!email) {
@@ -10,6 +11,9 @@ module.exports.isAuthenticated = (_, __, { email }) => {
 
 module.exports.isTaskOwner = async (_, { id }, { loggedInUserId }) => {
     try {
+        if (!isValidObjectId(id)) {
+            throw new Error("Invalid Task Id");
+        }
         const task = await Task.findById(id);
         if (!task) {
             throw new Error("Task not found")
