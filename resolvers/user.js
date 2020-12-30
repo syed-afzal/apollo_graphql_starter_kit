@@ -55,7 +55,7 @@ module.exports =  {
             }
         }
     },
-    // Field level resolver and it has higher priority than query level resolver
+    // Field level resolver and it has higher priority than query level resolve
     User: {
         tasks: async ( { id }) => {
             try {
