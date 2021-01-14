@@ -39,6 +39,17 @@ module.exports = {
                 console.error(e);
                 throw e;
             }
+        }),
+
+        updateTask: combineResolvers(isAuthenticated, isTaskOwner, async (_, { id, input }) => {
+            try {
+                return await Task.findByIdAndUpdate(id,
+                  { ...input },
+                  { new: true });
+            } catch (e) {
+                console.error(e);
+                throw e;
+            }
         })
     },
     // Field level resolver and it has higher priority than query level resolver
