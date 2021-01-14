@@ -18,8 +18,7 @@ module.exports = {
         }),
         task: combineResolvers(isAuthenticated, isTaskOwner, async (_, { id }) => {
             try {
-                const task = await Task.findById(id);
-                return task;
+                return await Task.findById(id);
             } catch (e) {
                 console.error(e);
                 throw e;
