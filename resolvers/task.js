@@ -55,8 +55,7 @@ module.exports = {
     Task: {
         user: async (parent) => {
             try {
-                const user = await User.findById(parent.user);
-                return user;
+                return await User.findById(parent.user);
             } catch (e) {
                 console.error(e);
                 throw e;
