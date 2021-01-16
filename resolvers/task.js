@@ -49,7 +49,13 @@ module.exports = {
                 console.error(e);
                 throw e;
             }
-        })
+        }),
+
+        deleteTask: combineResolvers(isAuthenticated, isTaskOwner, async (_, { id }, { loggedInUserId }) => {
+           const task = await Task.findByIdAndDelete(id);
+           await User.updateOne({_id: loggedInUserId}, { $pull: { tasks: task.id } })
+            return task;
+        }),
     },
     // Field level resolver and it has higher priority than query level resolver
     Task: {
