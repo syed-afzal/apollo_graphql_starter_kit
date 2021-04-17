@@ -1,4 +1,3 @@
-const { tasks, users } = require('../constants');
 const User = require('../db/models/user');
 const Task = require('../db/models/task');
 const { combineResolvers } = require('graphql-resolvers');
