@@ -6,11 +6,16 @@ const { isAuthenticated, isTaskOwner } = require('./middleware');
 module.exports = {
     Query: {
         /* tasks: () => tasks, // query level resolver */
-        tasks: combineResolvers(isAuthenticated, async (_, { skip=0, limit=0 }, { loggedInUserId }) => {
+        tasks: combineResolvers(isAuthenticated, async (_, { cursor, limit=0 }, { loggedInUserId }) => {
             try {
-                const tasks = await Task.find({ user: loggedInUserId })
+                const query = { user: loggedInUserId };
+                if (cursor) {
+                    query['_id'] = {
+                        '$lt': cursor
+                    }
+                };
+                const tasks = await Task.find(query)
                   .sort({ _id: -1 })
-                  .skip(skip)
                   .limit(limit);
                 return tasks;
             } catch (e) {
