@@ -75,9 +75,10 @@ module.exports = {
     },
     // Field level resolver and it has higher priority than query level resolver
     Task: {
-        user: async (parent) => {
+        user: async (parent, _, { loaders }) => {
             try {
-                return await User.findById(parent.user);
+                // return await User.findById(parent.user);
+                return await loaders.user.load(parent.user.toString());
             } catch (e) {
                 console.error(e);
                 throw e;
