@@ -50,7 +50,9 @@ app.use('/', (req, res, next) => {
     res.send('Hello');
 });
 
-app.listen(PORT, () => {
+const httpServer = app.listen(PORT, () => {
    console.log(`Server is up on PORT ${PORT}`);
    console.log(`GraphQl endpoint ${apolloServer.graphqlPath}`);
 });
+
+apolloServer.installSubscriptionHandlers(httpServer);
