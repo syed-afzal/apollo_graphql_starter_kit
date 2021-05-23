@@ -29,16 +29,25 @@ const apolloServer = new ApolloServer({
    typeDefs,
    resolvers,
     context: async ({ req }) => {
+     const contextObj = {};
+     if (req) {
        await verifyUser(req);
-        return {
-           email: req.email,
-           loggedInUserId: req.loggedInUserId,
-           loaders: {
-             user: new DataLoader(keys => loaders.user.batchUsers(keys)),
-             // for caching the data
-             // user: userLoader
-           }
-        }
+       contextObj.email = req.email;
+       contextObj.loggedInUserId = req.loggedInUserId;
+     }
+     contextObj.loaders = {
+       user: new DataLoader(keys => loaders.user.batchUsers(keys)),
+     }
+     return contextObj;
+        // return {
+        //    email: req.email,
+        //    loggedInUserId: req.loggedInUserId,
+        //    loaders: {
+        //      user: new DataLoader(keys => loaders.user.batchUsers(keys)),
+        //      // for caching the data
+        //      // user: userLoader
+        //    }
+        // }
     }
 });
 

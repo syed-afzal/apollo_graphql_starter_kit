@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { combineResolvers } = require('graphql-resolvers');
+const PubSub = require('../subscription');
+const { userEvents } = require('../subscription/events');
 
 const { users } = require('../constants');
 const User = require('../db/models/user');
@@ -32,7 +34,11 @@ module.exports =  {
                 }
                 const hashPassword = await bcrypt.hash(input.password, 12);
                 const newUser = new User({...input, password: hashPassword});
-                return await newUser.save();
+                const result = await newUser.save();;
+                PubSub.publish(userEvents.USER_CREATED, {
+                    userCreated: result
+                });
+                return result;
             } catch (e) {
                 console.log(e);
                 throw e
@@ -53,6 +59,11 @@ module.exports =  {
                 console.log(e);
                 throw e;
             }
+        }
+    },
+    Subscription: {
+        userCreated: {
+            subscribe: () => PubSub.asyncIterator(userEvents.USER_CREATED)
         }
     },
     // Field level resolver and it has higher priority than query level resolve
