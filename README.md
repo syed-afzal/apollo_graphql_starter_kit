@@ -33,3 +33,15 @@ It's sound good  :ok_hand: , so let's start :runner:
 
 To understand the code you should have a basic knowledge of [MongoDB](https://www.mongodb.com/), [NodeJS](https://nodejs.org/), 
 [Express](https://expressjs.com/) & my favourite language [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
+
+## Steps to Run the Project
+
+#### ♦ Setting up ENV file
+
+Rename env.example to .env and fill in the details
+
+```bash
+PORT=
+MONGO_DB_URL=
+JWT_SECRET_KEY=
+```
