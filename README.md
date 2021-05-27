@@ -29,3 +29,7 @@ GraphQL API Server with Apollo, Node.js, MongoDB. Jwt Authentication, Cursor Pag
 
 It's sound good  :ok_hand: , so let's start :runner:
 
+## Prerequisite
+
+To understand the code you should have a basic knowledge of [MongoDB](https://www.mongodb.com/), [NodeJS](https://nodejs.org/), 
+[Express](https://expressjs.com/) & my favourite language [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
