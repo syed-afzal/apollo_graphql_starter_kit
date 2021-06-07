@@ -45,3 +45,16 @@ PORT=
 MONGO_DB_URL=
 JWT_SECRET_KEY=
 ```
+#### ♦ Install dependencies
+
+```bash
+npm install
+```
+
+then RUN the command 
+
+```bash
+npm run dev
+```
+
+it will run the the project in development mode using nodemon
