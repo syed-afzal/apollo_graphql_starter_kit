@@ -113,4 +113,11 @@ No need to 😕 confuse it's a syntax to define Schema in **GraphQl**.
 
 ##### ♦ Query
 
+Query means to fetch the data from DB.
 We extend for Query and we only have a query for user here, we can add more modules there as well.
+
+##### ♦ Mutation
+
+Mutation means to Create/Update/Delete the record from DB.
+As you can see it is also extended like query but here we use two mutation.
+The purpose of mutation is to edit/delete the data.
