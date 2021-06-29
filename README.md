@@ -107,3 +107,10 @@ module.exports =  gql`
 No need to 😕 confuse it's a syntax to define Schema in **GraphQl**.
 
 ##Explanation
+
+###### :clipboard: `Note: we used extend for Mutation, Query & Subscription because we defining all these in main server.js file`
+
+
+##### ♦ Query
+
+We extend for Query and we only have a query for user here, we can add more modules there as well.
