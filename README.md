@@ -103,3 +103,7 @@ module.exports =  gql`
   }
 `;
 ```
+
+No need to 😕 confuse it's a syntax to define Schema in **GraphQl**.
+
+##Explanation
