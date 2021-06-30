@@ -121,3 +121,9 @@ We extend for Query and we only have a query for user here, we can add more modu
 Mutation means to Create/Update/Delete the record from DB.
 As you can see it is also extended like query but here we use two mutation.
 The purpose of mutation is to edit/delete the data.
+
+##### ♦ Subscription
+
+Like queries, subscriptions enable you to fetch data. Unlike queries, subscriptions are long-lasting operations that can change their result over time.
+Subscriptions are useful for notifying your client in real time about changes to back-end data, such as the creation of a new object or updates to an important field.
+
