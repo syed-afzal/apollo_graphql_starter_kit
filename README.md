@@ -1,4 +1,4 @@
-<h1 align="center"> 🚀 Apollo GraphQL Starter Kit 🚀 </h1>
+<h1 align="center"> 🚀 Apollo GraphQL Server Express 🚀 </h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
 <!--     <img alt="Version" src="https://img.shields.io/badge/build-passing-brightgreen" /> -->
